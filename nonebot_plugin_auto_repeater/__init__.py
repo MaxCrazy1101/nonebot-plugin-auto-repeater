@@ -18,7 +18,6 @@ try:
     from nonebot.adapters.onebot.v11.permission import GROUP_ADMIN, GROUP_OWNER
 
 except ModuleNotFoundError as _:
-    logger.warning("Nonebot version look like high then 2.0.0a16 to use high version adapters!")
     try:
         from nonebot.adapters.cqhttp import (  # type: ignore
             Bot,
@@ -26,7 +25,10 @@ except ModuleNotFoundError as _:
             GroupRecallNoticeEvent,
             Message,
         )
-        from nonebot.adapters.cqhttp.permission import GROUP_ADMIN, GROUP_OWNER  # type: ignore
+        from nonebot.adapters.cqhttp.permission import (  # type: ignore
+            GROUP_ADMIN,
+            GROUP_OWNER,
+        )
     except ModuleNotFoundError as _:
         raise ImportError("No support adapter find! Abort load!")
 
@@ -77,12 +79,16 @@ async def _(event: GroupMessageEvent, args: Message = CommandArg()):
     now_state = 1 if repeater.is_enable(group_id) else 0
     now_mode = MESSAGE_OPTIONS[now_state]
     if not text or text not in MESSAGE_OPTIONS:
-        await on_repeater_config.finish(f"没有输入需要设置的模式或输入有误！当前模式为{now_mode}!")
+        await on_repeater_config.finish(
+            f"没有输入需要设置的模式或输入有误！当前模式为{now_mode}!"
+        )
     new_index = MESSAGE_OPTIONS.index(text)
     if new_index == now_state:
         await on_repeater_config.finish(f"当前模式已经为{now_mode}")
     repeater.set_mode(group_id, True if new_index == 1 else False)
-    await on_repeater_config.finish(f"设置成功！设置自动复读功能为：{MESSAGE_OPTIONS[new_index]}")
+    await on_repeater_config.finish(
+        f"设置成功！设置自动复读功能为：{MESSAGE_OPTIONS[new_index]}"
+    )
 
 
 message_list: dict[int, list] = {}
