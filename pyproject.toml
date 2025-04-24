@@ -5,8 +5,8 @@ description = "A plugin based on NoneBot2, auto repeater message in group."
 readme = "README.md"
 license = { text = "GPLv3" }
 authors = [
-    { name = "zhulinyv", email = "zhulinyv2005@outlook.com" },
     { name = "MaxCrazy1101", email = "alex02newton@gmail.com" },
+    { name = "zhulinyv", email = "zhulinyv2005@outlook.com" },
 ]
 requires-python = ">=3.10"
 dependencies = [

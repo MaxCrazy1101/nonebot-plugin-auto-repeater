@@ -1,16 +1,41 @@
-
-<p align="center">
-  <a><img src="http://tva1.sinaimg.cn/large/006APoFYly1fzdi7y0v9wg306o06ot8t.gif"></a>
-</p>
+<!-- markdownlint-disable MD033 MD036 MD041 MD046 -->
 <div align="center">
-
-  # AutoRepeater
-  ✨ 基于[NoneBot2](https://github.com/nonebot/nonebot2)的插件，群聊自动复读机 ✨
-  </br>
-  ✨ Auto Repeater ✨
+<p align="center">
+  <a><img src="./docs/logo.gif"></a>
+</p>
 </div>
 
-## 功能介绍
+<div align="center">
+
+  # Auto Repeater
+  ✨ 基于[NoneBot2](https://github.com/nonebot/nonebot2)的插件，群聊自动复读机 ✨
+
+
+<a href="./LICENSE">
+    <img src="https://img.shields.io/github/license/MaxCrazy1101/nonebot-plugin-auto-repeater.svg" alt="license">
+</a>
+<a href="https://pypi.python.org/pypi/nonebot-plugin-auto-repeater">
+    <img src="https://img.shields.io/pypi/v/nonebot-plugin-auto-repeater.svg" alt="pypi">
+</a>
+<img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="python">
+<br>
+<a href="https://results.pre-commit.ci/latest/github/MaxCrazy1101/nonebot-plugin-auto-repeater/main">
+    <img src="https://results.pre-commit.ci/badge/github/MaxCrazy1101/nonebot-plugin-auto-repeater/main.svg" alt="pre-commit.ci status">
+</a>
+<a href="https://registry.nonebot.dev/plugin/nonebot-plugin-auto-repeater:nonebot_plugin_auto_repeater">
+  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnbbdg.lgc2333.top%2Fplugin%2Fnonebot-plugin-example" alt="NoneBot Registry" />
+</a>
+<a href="https://github.com/astral-sh/uv">
+    <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" alt="uv">
+</a>
+<a href="https://github.com/astral-sh/ruff">
+<img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json" alt="ruff">
+</a>
+<a href="https://www.codefactor.io/repository/github/MaxCrazy1101/nonebot-plugin-auto-repeater"><img src="https://www.codefactor.io/repository/github/MaxCrazy1101/nonebot-plugin-auto-repeater/badge" alt="CodeFactor" />
+</a>
+</div>
+
+## 📖 介绍
 
 连续发送2条相同消息，机器人就会自动+1。包括普通消息，QQ表情，还有图片（表情包）。支持图片夹文字和表情夹文字的消息!
 
@@ -21,23 +46,71 @@
 
 支持复读跟随撤回功能，防止有人使用机器人复读功能爆破账号。
 
-## 用法简介
+## 💿 安装
 依赖插件:
 
-- 需要安装\[[nonebot_plugin_apscheduler](https://github.com/nonebot/plugin-apscheduler)\]插件
+<details open>
+<summary>使用 nb-cli 安装</summary>
+在 nonebot2 项目的根目录下打开命令行, 输入以下指令即可安装
 
-两个全局配置：
+    nb plugin install nonebot-plugin-auto-repeater
 
-```python
+</details>
 
-repeat_interval = 300 # 单位秒 复读同一条消息的时间间隔 默认间隔5分钟
+<details>
+<summary>使用包管理器安装</summary>
+在 nonebot2 项目的插件目录下, 打开命令行, 根据你使用的包管理器, 输入相应的安装命令
 
-repeater_config_path = "./data/repeater_config/" # 多群状态设置文件存放路径
+<details>
+<summary>pip</summary>
 
-```
-使用指令:
+    pip install nonebot-plugin-auto-repeater
+</details>
+<details>
+<summary>pdm</summary>
 
-- 你机器人的指令前缀+"自动+1设置","自动复读","自动复读设置"&emsp;+&emsp;["开启"/"关闭"]&emsp;控制机器人在当前群是否进行复读，可由管理员、群主和Superuser控制。
+    pdm add nonebot-plugin-auto-repeater
+</details>
+<details>
+<summary>poetry</summary>
+
+    poetry add nonebot-plugin-auto-repeater
+</details>
+<details>
+<summary>conda</summary>
+
+    conda install nonebot-plugin-auto-repeater
+</details>
+
+打开 nonebot2 项目根目录下的 `pyproject.toml` 文件, 在 `[tool.nonebot]` 部分追加写入
+
+    plugins = ["nonebot_plugin_auto_repeater"]
+
+</details>
+
+## ⚙️ 配置
+
+### 配置表
+
+在 nonebot2 项目的`.env`文件中修改配置项
+
+| 配置项 | 必填 | 默认值 | 说明 |
+|:-----:|:----:|:----:|:----:|
+| repeat_interval | 否 | 无 | 相同消息相隔多久复读一次 |
+| repeat_default_mode | 否 | True | 在群聊中是否默认启用 |
+
+
+## 🎉 使用
+
+> [!NOTE]
+> 记得使用[命令前缀](https://nonebot.dev/docs/appendices/config#command-start-%E5%92%8C-command-separator)哦
+
+### 🪧 指令表
+
+| 指令 | 权限 | 参数 | 说明 |
+|:-----:|:----:|:----:|:----:|
+| 自动复读 | 管理员、群主和Superuser | "开启"/"关闭" | 控制机器人在当前群是否进行复读 |
+
 
 ***
 ## 等待实现
@@ -45,14 +118,3 @@ repeater_config_path = "./data/repeater_config/" # 多群状态设置文件存�
 - Recall功能开关
 - 图片使用hash比较,提高准确性
 ***
-<a href="https://github.com/Utmost-Happiness-Planet/uhpstatus/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-GPL%20v3.0-orange" alt="license">
-  </a>
-  
-  <a href="https://github.com/nonebot/nonebot2">
-    <img src="https://img.shields.io/badge/nonebot-v2-red" alt="nonebot">
-  </a> 
-  
-  <a href="">
-    <img src="https://img.shields.io/badge/release-v0.1.4-blueviolet" alt="release">
-</a>

@@ -163,7 +163,7 @@ def check_similarity(event_msg: Message, last_msg: Message):
                     break
             elif e_msg.type == "image":
                 # TODO:优化图片比较方式
-                if e_msg.data["file_name"] != l_msg.data["file_name"]:
+                if e_msg.data["filename"] != l_msg.data["filename"]:
                     f_sim = False
                     break
     else:
