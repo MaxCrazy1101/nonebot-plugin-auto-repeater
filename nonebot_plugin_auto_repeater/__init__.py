@@ -134,21 +134,7 @@ async def _(event: GroupMessageEvent):
             )
             message_list[group_id] = []
 
-            # repeater_message = Message()
-            # for msg in Message(repeater_msg):
-            #     if msg.type == "image":
-            #         repeater_message += MessageSegment.image(msg.data["url"])
-            #     if msg.type == "face":
-            #         repeater_message += MessageSegment.face(msg.data["id"])
-            #     if msg.type == "text":
-            #         repeater_message += MessageSegment.text(Message(msg).extract_plain_text())
-
-            # # 空消息
-            # if len(repeater_message) == 0:
-            #     await auto_repeat.finish()
-
             try:
-                # msg_id = await auto_repeat.send(repeater_message)
                 msg_id = await auto_repeat.send(repeater_msg)
             except Exception as e:
                 logger.error("复读失败！" + str(e))
@@ -177,9 +163,7 @@ def check_similarity(event_msg: Message, last_msg: Message):
                     break
             elif e_msg.type == "image":
                 # TODO:优化图片比较方式
-                # 目前使用比较图片大小的方式复读
-                print(e_msg.data)
-                if e_msg.data["file_size"] != l_msg.data["file_size"]:
+                if e_msg.data["file_name"] != l_msg.data["file_name"]:
                     f_sim = False
                     break
     else:
