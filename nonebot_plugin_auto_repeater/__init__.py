@@ -4,7 +4,6 @@ from importlib.metadata import version
 
 from nonebot import logger, require
 from nonebot.adapters import Message
-from nonebot.matcher import Matcher
 from nonebot.params import CommandArg
 from nonebot.permission import SUPERUSER
 from nonebot.plugin import on_command, on_message, on_notice
@@ -15,8 +14,6 @@ try:
         GroupMessageEvent,
         GroupRecallNoticeEvent,
         Message,
-        MessageEvent,
-        MessageSegment,
     )
     from nonebot.adapters.onebot.v11.permission import GROUP_ADMIN, GROUP_OWNER
 
@@ -28,7 +25,6 @@ except ModuleNotFoundError as _:
             GroupMessageEvent,
             GroupRecallNoticeEvent,
             Message,
-            MessageSegment,
         )
         from nonebot.adapters.cqhttp.permission import GROUP_ADMIN, GROUP_OWNER  # type: ignore
     except ModuleNotFoundError as _:
